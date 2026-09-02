@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import { useState, useEffect } from 'react';
 import type { Exercise, ExercisePage } from "../types/exercise";
 
-const BASE_URL = "http://localhost:8080/api"
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 function ExerciseList() {
   const[data, setData] = useState<ExercisePage | null>(null);
@@ -45,10 +45,15 @@ function ExerciseList() {
 
 
   return (
-    <>
-    <h1 className="font-bold text-2xl p-3">Exercises</h1>
-    <ul className="mt-2 flex flex-col gap-1 bg-neutral-900 rounded-xl p-1">{listExercise}</ul>
-    </>
+    <div className="flex flex-col h-full">
+    <h1 className="font-bold text-2xl px-3 pt-3 pb-4 border-b border-neutral-800">Exercises</h1>
+    <ul className="flex flex-1 overflow-y-auto flex-col gap-1 bg-neutral-900 p-1">{listExercise}</ul>
+    <div className="flex items-center justify-center gap-4 p-2 border-t border-neutral-800">
+      <button onClick={() => setPage(p => p - 1)} disabled={page === 0 || isLoading} className="px-3 py-2 rounded-xl bg-neutral-900 border border-neutral-800 hover:bg-neutral-800 disabled:opacity-40 cursor-pointer disabled:cursor-not-allowed min-w-24">Zurück</button>
+      <span>Seite {page + 1} von {data.totalPages}</span>
+      <button onClick={() => setPage(p => p + 1)} disabled={page >= data.totalPages - 1 || isLoading} className="px-3 py-2 rounded-xl bg-neutral-900 border border-neutral-800 hover:bg-neutral-800 disabled:opacity-40 cursor-pointer disabled:cursor-not-allowed min-w-24">Weiter</button>
+    </div>
+    </div>
 );
 }
 export default ExerciseList

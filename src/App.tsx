@@ -10,20 +10,22 @@ import Profile from './pages/Profile'
 function App() {
   return (
     <BrowserRouter>
-      <div className="flex">
+      <div className="flex h-dvh">
         <div className="hidden md:block">
           <Sidebar />
         </div>
-        <div className="flex-1 pb-20 md:pb-0 md:ml-48">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/workout" element={<WorkoutPage />} />
-            <Route path="/exercises" element={<ExerciseList />} />
-            <Route path="/profile" element={<Profile />} />
-          </Routes>
-        </div>
-        <div className="md:hidden">
-          <BottomNav />
+        <div className="flex flex-1 flex-col overflow-hidden">
+          <main className="flex-1 overflow-y-auto">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/workout" element={<WorkoutPage />} />
+              <Route path="/exercises" element={<ExerciseList />} />
+              <Route path="/profile" element={<Profile />} />
+            </Routes>
+          </main>
+          <div className="md:hidden shrink-0">
+            <BottomNav />
+          </div>
         </div>
       </div>
     </BrowserRouter>
