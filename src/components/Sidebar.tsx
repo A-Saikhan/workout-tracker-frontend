@@ -22,7 +22,7 @@ function Sidebar() {
                 <span>Profile</span>
             </Link>
         </nav>
-    )
+    );
 }
 
 export default Sidebar
