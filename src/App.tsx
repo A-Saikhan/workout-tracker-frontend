@@ -6,6 +6,7 @@ import Sidebar from './components/Sidebar'
 import Home from './pages/Home'
 import ExerciseList from './pages/ExerciseList'
 import Profile from './pages/Profile'
+import ExerciseDetail from './pages/ExerciseDetail'
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
               <Route path="/workout" element={<WorkoutPage />} />
               <Route path="/exercises" element={<ExerciseList />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="exercises/:id" element={<ExerciseDetail />} />
             </Routes>
           </main>
           <div className="md:hidden shrink-0">
