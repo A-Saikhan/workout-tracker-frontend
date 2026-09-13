@@ -28,8 +28,8 @@ function ExerciseList() {
   });
   
   
-  if (isPending) return <p>Laden...</p>
-  if (isError) return <p>Fehler: {error.message}</p>
+  if (isPending) return <p>Loading...</p>
+  if (isError) return <p>Error: {error.message}</p>
   const listExercise = data.content.map(exercise =>
     <li key={exercise.id}>
       <Link to={`/exercises/${exercise.id}`}>
@@ -50,9 +50,9 @@ function ExerciseList() {
       </div>
       <ul className="flex flex-1 overflow-y-auto flex-col gap-1 bg-neutral-900 p-1">{listExercise}</ul>
       <div className="flex items-center justify-center gap-4 p-2 border-t border-neutral-800">
-        <button onClick={() => setPage(p => p - 1)} disabled={page === 0 || isPlaceholderData} className="px-3 py-2 rounded-xl bg-neutral-900 border border-neutral-800 hover:bg-neutral-800 disabled:opacity-40 cursor-pointer disabled:cursor-not-allowed min-w-24">Zurück</button>
-        <span>Seite {page + 1} von {data.totalPages}</span>
-        <button onClick={() => setPage(p => p + 1)} disabled={page >= data.totalPages - 1 || isPlaceholderData} className="px-3 py-2 rounded-xl bg-neutral-900 border border-neutral-800 hover:bg-neutral-800 disabled:opacity-40 cursor-pointer disabled:cursor-not-allowed min-w-24">Weiter</button>
+        <button onClick={() => setPage(p => p - 1)} disabled={page === 0 || isPlaceholderData} className="px-3 py-2 rounded-xl bg-neutral-900 border border-neutral-800 hover:bg-neutral-800 disabled:opacity-40 cursor-pointer disabled:cursor-not-allowed min-w-24">Back</button>
+        <span>Page {page + 1} of {data.totalPages}</span>
+        <button onClick={() => setPage(p => p + 1)} disabled={page >= data.totalPages - 1 || isPlaceholderData} className="px-3 py-2 rounded-xl bg-neutral-900 border border-neutral-800 hover:bg-neutral-800 disabled:opacity-40 cursor-pointer disabled:cursor-not-allowed min-w-24">Next</button>
       </div>
     </div>
 );

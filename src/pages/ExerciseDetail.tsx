@@ -26,8 +26,8 @@ function ExerciseDetail() {
         },
     });
 
-    if (isPending) return <p>Lade...</p>
-    if (isError) return <p>Fehler: {error.message}</p>
+    if (isPending) return <p>Loading...</p>
+    if (isError) return <p>Error: {error.message}</p>
     
     const details = [
         { label: "Level", value: data.level },
