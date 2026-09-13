@@ -1,5 +1,4 @@
-import { Link } from "react-router";
-import { useState } from 'react';
+import { useSearchParams, Link } from "react-router";
 import type { ExercisePage } from "../types/exercise";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 
@@ -7,7 +6,8 @@ const BASE_URL = import.meta.env.VITE_API_URL;
 
 function ExerciseList() {
 
-  const[page, setPage] = useState(0);
+  const[searchParams, setSearchParams] = useSearchParams();
+  const page = Number(searchParams.get("page") ?? 0);
 
   const {
     data,
@@ -46,13 +46,13 @@ function ExerciseList() {
     <div className="flex flex-col h-full">
       <div className="flex items-center justify-between px-3 pt-3 pb-4 border-b border-neutral-800">
         <h1 className="font-bold text-2xl">Exercises</h1>
-        {isFetching && <span className="text-sm text-neutral-500 text-right w-min-32">Lädt…</span>}
+        {isFetching && <span className="text-sm text-neutral-500 text-right min-w-32">Lädt…</span>}
       </div>
       <ul className="flex flex-1 overflow-y-auto flex-col gap-1 bg-neutral-900 p-1">{listExercise}</ul>
       <div className="flex items-center justify-center gap-4 p-2 border-t border-neutral-800">
-        <button onClick={() => setPage(p => p - 1)} disabled={page === 0 || isPlaceholderData} className="px-3 py-2 rounded-xl bg-neutral-900 border border-neutral-800 hover:bg-neutral-800 disabled:opacity-40 cursor-pointer disabled:cursor-not-allowed min-w-24">Back</button>
+        <button onClick={() => setSearchParams({ page: `${page - 1}` })} disabled={page === 0 || isPlaceholderData} className="px-3 py-2 rounded-xl bg-neutral-900 border border-neutral-800 hover:bg-neutral-800 disabled:opacity-40 cursor-pointer disabled:cursor-not-allowed min-w-24">Back</button>
         <span>Page {page + 1} of {data.totalPages}</span>
-        <button onClick={() => setPage(p => p + 1)} disabled={page >= data.totalPages - 1 || isPlaceholderData} className="px-3 py-2 rounded-xl bg-neutral-900 border border-neutral-800 hover:bg-neutral-800 disabled:opacity-40 cursor-pointer disabled:cursor-not-allowed min-w-24">Next</button>
+        <button onClick={() => setSearchParams({ page: `${page + 1}` })} disabled={page >= data.totalPages - 1 || isPlaceholderData} className="px-3 py-2 rounded-xl bg-neutral-900 border border-neutral-800 hover:bg-neutral-800 disabled:opacity-40 cursor-pointer disabled:cursor-not-allowed min-w-24">Next</button>
       </div>
     </div>
 );
