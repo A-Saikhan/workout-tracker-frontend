@@ -46,7 +46,7 @@ function ExerciseList() {
     <div className="flex flex-col h-full">
       <div className="flex items-center justify-between px-3 pt-3 pb-4 border-b border-neutral-800">
         <h1 className="font-bold text-2xl">Exercises</h1>
-        {isFetching && <span className="text-sm text-neutral-500 text-right min-w-32">Lädt…</span>}
+        {isFetching && <span className="text-sm text-neutral-500 text-right min-w-32">Loading...</span>}
       </div>
       <ul className="flex flex-1 overflow-y-auto flex-col gap-1 bg-neutral-900 p-1">{listExercise}</ul>
       <div className="flex items-center justify-center gap-4 p-2 border-t border-neutral-800">

@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { useParams, Link, useNavigate, useLocation } from "react-router";
+import { useParams, useNavigate, useLocation } from "react-router";
 import type { Exercise } from "../types/exercise";
 import { useState } from 'react';
 import { ArrowLeftIcon } from '@heroicons/react/24/outline'
